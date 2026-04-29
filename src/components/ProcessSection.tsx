@@ -1,3 +1,5 @@
+"use client";
+
 import { ClipboardList, UserCheck, Rocket } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 

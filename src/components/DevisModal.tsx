@@ -1,3 +1,5 @@
+"use client";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,7 +55,7 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="sector">Secteur d'activité</Label>
+            <Label htmlFor="sector">Secteur d&apos;activité</Label>
             <Input id="sector" placeholder="Ex: Hôtellerie, Industrie…" />
           </div>
           <div className="space-y-2">

@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 const Footer = () => (
@@ -7,7 +8,7 @@ const Footer = () => (
       <div className="grid md:grid-cols-3 gap-8">
         {/* Brand */}
         <div>
-          <img src={logo} alt="ASOMOVIT Intérim" className="h-32 w-auto mb-4" />
+          <Image src={logo} alt="ASOMOVIT Intérim" className="h-32 w-auto mb-4" height={128} />
           <p className="text-sm text-[hsl(220,60%,20%)]/70">
             Votre partenaire de confiance en recrutement temporaire à Marrakech.
           </p>
@@ -19,7 +20,7 @@ const Footer = () => (
           <ul className="space-y-2 text-sm text-[hsl(220,60%,20%)]/70">
             <li><a href="#accueil" className="hover:text-[hsl(220,60%,20%)] transition-colors">Accueil</a></li>
             <li><a href="#services" className="hover:text-[hsl(220,60%,20%)] transition-colors">Nos services</a></li>
-            <li><a href="#secteurs" className="hover:text-[hsl(220,60%,20%)] transition-colors">Secteurs d'activité</a></li>
+            <li><a href="#secteurs" className="hover:text-[hsl(220,60%,20%)] transition-colors">Secteurs d&apos;activité</a></li>
             <li><a href="#process" className="hover:text-[hsl(220,60%,20%)] transition-colors">Comment ça marche</a></li>
           </ul>
         </div>

@@ -10,7 +10,7 @@ const sectors = [
 const SectorsSection = () => (
   <section id="secteurs" className="py-20 bg-card">
     <div className="container mx-auto px-4">
-      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Secteurs d'activité</h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Secteurs d&apos;activité</h2>
       <p className="mt-4 text-center text-muted-foreground max-w-xl mx-auto">
         Nous intervenons dans de nombreux secteurs à Marrakech et sa région
       </p>

@@ -1,6 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 interface NavbarProps {
@@ -22,7 +25,7 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b shadow-sm">
       <div className="container mx-auto flex items-center justify-between h-24 px-4">
         <a href="#accueil" className="flex items-center gap-2">
-          <img src={logo} alt="ASOMOVIT Intérim" className="h-20 w-auto object-scale-down bg-transparent" />
+          <Image src={logo} alt="ASOMOVIT Intérim" className="h-20 w-auto object-scale-down bg-transparent" height={80} />
         </a>
 
         {/* Desktop */}

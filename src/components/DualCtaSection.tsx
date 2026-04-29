@@ -31,7 +31,7 @@ const DualCtaSection = ({ onDevisClick, onCvClick }: DualCtaSectionProps) => (
           </div>
           <h3 className="text-xl font-bold text-foreground">Vous êtes un candidat</h3>
           <p className="mt-3 text-muted-foreground text-sm">
-            À la recherche d'une mission ? Déposez votre CV et laissez-nous trouver l'opportunité idéale.
+            À la recherche d&apos;une mission ? Déposez votre CV et laissez-nous trouver l&apos;opportunité idéale.
           </p>
           <Button onClick={onCvClick} size="lg" className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
             Déposer mon CV
