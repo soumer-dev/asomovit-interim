@@ -11,7 +11,6 @@ import WhyUsSection from "@/components/WhyUsSection";
 import QualitySection from "@/components/QualitySection";
 import DualCtaSection from "@/components/DualCtaSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
-import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
 import DevisModal from "@/components/DevisModal";
 import CvModal from "@/components/CvModal";
@@ -39,7 +38,6 @@ export default function HomePage() {
         onCvClick={() => setCvOpen(true)}
       />
       <FinalCtaSection onDevisClick={() => setDevisOpen(true)} />
-      <MapSection />
       <Footer />
       <DevisModal open={devisOpen} onOpenChange={setDevisOpen} />
       <CvModal open={cvOpen} onOpenChange={setCvOpen} />
