@@ -13,11 +13,11 @@ interface FinalCtaSectionProps {
 }
 
 const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
-  <section id="contact" className="bg-gradient-to-r from-primary to-primary/80">
-    <div className="container mx-auto px-4 py-16">
-      <div className="grid md:grid-cols-2 gap-10 items-center">
+  <section id="contact" className="bg-gradient-to-br from-primary via-primary to-primary/85">
+    <div className="container mx-auto px-4 sm:px-6 py-20">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
 
-        {/* Left — CTA */}
+        {/* Left — CTA text */}
         <motion.div
           variants={slideLeft}
           initial="hidden"
@@ -25,10 +25,10 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
           viewport={viewport}
           className="text-center md:text-left"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground">
+          <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground leading-tight">
             Besoin de personnel temporaire rapidement ?
           </h2>
-          <p className="mt-4 text-primary-foreground/80 text-lg">
+          <p className="mt-4 text-primary-foreground/80 text-lg leading-relaxed">
             Contactez votre agence intérim à Marrakech et recevez une proposition sous 24h
           </p>
           <motion.div
@@ -43,7 +43,7 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
               <Button
                 size="lg"
                 onClick={onDevisClick}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 text-base px-8 transition-shadow duration-200 hover:shadow-lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 text-base px-8 shadow-sm hover:shadow-lg transition-shadow duration-200"
               >
                 Demander un devis gratuit
               </Button>
@@ -53,23 +53,24 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-[hsl(320,70%,35%)] text-[hsl(320,70%,35%)] hover:bg-[hsl(320,70%,35%)]/10 gap-2 text-base px-8"
+                className="border-white/40 text-white hover:bg-white/10 gap-2 text-base px-8"
               >
-                <a href="tel:+212661622455">
-                  <Phone className="h-5 w-5" /> Appelez-nous
+                <a href="tel:+212661622455" aria-label="Appeler ASOMOVIT Intérim">
+                  <Phone className="h-5 w-5" aria-hidden="true" />
+                  Appelez-nous
                 </a>
               </Button>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Right — Map */}
+        {/* Right — Map embed */}
         <motion.div
           variants={slideRight}
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg"
+          className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10"
         >
           <iframe
             title="ASOMOVIT Intérim – Allal El Fassi, Marrakech"
@@ -86,7 +87,7 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
             href={MAP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute bottom-3 right-3 z-10 bg-white text-[hsl(220,60%,20%)] text-xs font-semibold px-3 py-1.5 rounded-full shadow-md hover:bg-accent hover:text-white transition-colors flex items-center gap-1.5"
+            className="absolute bottom-3 right-3 z-10 bg-white text-[hsl(220,60%,20%)] text-xs font-semibold px-3 py-1.5 rounded-full shadow-md hover:bg-accent hover:text-white transition-colors duration-200 flex items-center gap-1.5"
             aria-label="Voir ASOMOVIT Intérim sur Google Maps"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">

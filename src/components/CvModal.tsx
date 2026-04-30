@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { Loader2 } from "lucide-react";
 
 interface CvModalProps {
   open: boolean;
@@ -29,7 +30,6 @@ const CvModal = ({ open, onOpenChange }: CvModalProps) => {
     setLoading(true);
 
     try {
-      // --- reCAPTCHA v3 token ---
       let recaptchaToken = "";
       if (executeRecaptcha) {
         recaptchaToken = await executeRecaptcha("cv_form");
@@ -64,8 +64,7 @@ const CvModal = ({ open, onOpenChange }: CvModalProps) => {
       form.reset();
       onOpenChange(false);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Une erreur est survenue.";
+      const message = err instanceof Error ? err.message : "Une erreur est survenue.";
       toast.error(message);
     } finally {
       setLoading(false);
@@ -76,39 +75,50 @@ const CvModal = ({ open, onOpenChange }: CvModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Déposer mon CV</DialogTitle>
+          <DialogTitle className="text-xl">Déposer mon CV</DialogTitle>
           <DialogDescription>
             Envoyez-nous votre candidature et nous vous recontacterons rapidement.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+
+        <form onSubmit={handleSubmit} className="space-y-4 mt-2" noValidate>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="cv-name">Nom complet</Label>
-              <Input id="cv-name" name="name" placeholder="Votre nom" required />
+              <Input
+                id="cv-name"
+                name="name"
+                placeholder="Votre nom"
+                autoComplete="name"
+                required
+              />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="cv-phone">Téléphone</Label>
               <Input
                 id="cv-phone"
                 name="phone"
                 type="tel"
                 placeholder="+212 6 XX XX XX XX"
+                autoComplete="tel"
                 required
               />
             </div>
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-1.5">
             <Label htmlFor="cv-email">Email</Label>
             <Input
               id="cv-email"
               name="email"
               type="email"
               placeholder="email@exemple.com"
+              autoComplete="email"
               required
             />
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-1.5">
             <Label htmlFor="cv-sector">Secteur recherché</Label>
             <Input
               id="cv-sector"
@@ -116,7 +126,8 @@ const CvModal = ({ open, onOpenChange }: CvModalProps) => {
               placeholder="Ex: Hôtellerie, Nettoyage…"
             />
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-1.5">
             <Label htmlFor="cv-exp">Expérience</Label>
             <Textarea
               id="cv-exp"
@@ -125,12 +136,21 @@ const CvModal = ({ open, onOpenChange }: CvModalProps) => {
               rows={3}
             />
           </div>
+
           <Button
             type="submit"
-            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+            className="w-full gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
             disabled={loading}
+            aria-busy={loading}
           >
-            {loading ? "Envoi en cours…" : "Envoyer ma candidature"}
+            {loading ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                Envoi en cours…
+              </>
+            ) : (
+              "Envoyer ma candidature"
+            )}
           </Button>
         </form>
       </DialogContent>

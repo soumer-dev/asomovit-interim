@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { Loader2 } from "lucide-react";
 
 interface DevisModalProps {
   open: boolean;
@@ -29,7 +30,6 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
     setLoading(true);
 
     try {
-      // --- reCAPTCHA v3 token ---
       let recaptchaToken = "";
       if (executeRecaptcha) {
         recaptchaToken = await executeRecaptcha("devis_form");
@@ -65,8 +65,7 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
       form.reset();
       onOpenChange(false);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Une erreur est survenue.";
+      const message = err instanceof Error ? err.message : "Une erreur est survenue.";
       toast.error(message);
     } finally {
       setLoading(false);
@@ -77,69 +76,95 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Demander un devis gratuit</DialogTitle>
+          <DialogTitle className="text-xl">Demander un devis gratuit</DialogTitle>
           <DialogDescription>
             Remplissez le formulaire et nous vous répondrons sous 24h.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+
+        <form onSubmit={handleSubmit} className="space-y-4 mt-2" noValidate>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="company">Entreprise</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="devis-company">Entreprise</Label>
               <Input
-                id="company"
+                id="devis-company"
                 name="company"
                 placeholder="Nom de l'entreprise"
+                autoComplete="organization"
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="name">Nom complet</Label>
-              <Input id="name" name="name" placeholder="Votre nom" required />
+            <div className="space-y-1.5">
+              <Label htmlFor="devis-name">Nom complet</Label>
+              <Input
+                id="devis-name"
+                name="name"
+                placeholder="Votre nom"
+                autoComplete="name"
+                required
+              />
             </div>
           </div>
+
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="devis-email">Email</Label>
               <Input
-                id="email"
+                id="devis-email"
                 name="email"
                 type="email"
                 placeholder="email@exemple.com"
+                autoComplete="email"
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Téléphone</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="devis-phone">Téléphone</Label>
               <Input
-                id="phone"
+                id="devis-phone"
                 name="phone"
                 type="tel"
                 placeholder="+212 6 XX XX XX XX"
+                autoComplete="tel"
                 required
               />
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="sector">Secteur d&apos;activité</Label>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="devis-sector">Secteur d&apos;activité</Label>
             <Input
-              id="sector"
+              id="devis-sector"
               name="sector"
               placeholder="Ex: Hôtellerie, Industrie…"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="message">Décrivez votre besoin</Label>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="devis-message">Décrivez votre besoin</Label>
             <Textarea
-              id="message"
+              id="devis-message"
               name="message"
               placeholder="Nombre de postes, durée, profils recherchés…"
               rows={3}
               required
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Envoi en cours…" : "Envoyer ma demande"}
+
+          <Button
+            type="submit"
+            className="w-full gap-2"
+            disabled={loading}
+            aria-busy={loading}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                Envoi en cours…
+              </>
+            ) : (
+              "Envoyer ma demande"
+            )}
           </Button>
         </form>
       </DialogContent>

@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
 @layer base {
   :root {
     --background: 220 20% 97%;
@@ -36,6 +37,7 @@
 
     --radius: 0.75rem;
 
+    /* Sidebar tokens (shadcn/ui) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 222 52% 36%;
@@ -77,28 +79,74 @@
   }
 }
 
+/* ─── Base resets & global styles ────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Offset anchor links so they clear the fixed navbar (96px) */
   section[id] {
-  scroll-margin-top: 96px;
+    scroll-margin-top: 96px;
   }
+
   body {
-    @apply bg-background text-foreground font-sans;
-    animation: bodyFadeIn 0.4s ease-out both;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    line-height: 1.6;
+    animation: bodyFadeIn 0.35s ease-out both;
+  }
+
+  /* Consistent focus ring for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove focus ring for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Improve input focus states */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 0;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.12);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+
+  /* Typography scale consistency */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    line-height: 1.65;
   }
 }
 
+/* ─── Page load fade-in ──────────────────────────────────────────────────── */
 @keyframes bodyFadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* Respect reduced-motion: disable all transitions & animations */
+/* ─── Reduced-motion: collapse all animations ────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -108,17 +156,11 @@
   }
 }
 
-@layer utilities {
-  /* Legacy utility kept for compatibility — Framer Motion handles scroll animations */
-  .animation-delay-200 { animation-delay: 0.2s; }
-  .animation-delay-400 { animation-delay: 0.4s; }
-}
-
-/* ─── WhatsApp Fixed CTA ─────────────────────────────────────────── */
+/* ─── WhatsApp Fixed CTA ─────────────────────────────────────────────────── */
 .whatsapp-cta {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 1.75rem;
+  right: 1.75rem;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -127,13 +169,18 @@
   height: 3.25rem;
   border-radius: 9999px;
   background-color: #25d366;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .whatsapp-cta:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+}
+
+.whatsapp-cta:focus-visible {
+  outline: 3px solid #25d366;
+  outline-offset: 3px;
 }
 
 /* Subtle pulsing ring */
@@ -142,21 +189,12 @@
   inset: 0;
   border-radius: 9999px;
   border: 2px solid #25d366;
-  animation: whatsapp-pulse 2.4s ease-out infinite;
+  animation: whatsapp-pulse 2.6s ease-out infinite;
   pointer-events: none;
 }
 
 @keyframes whatsapp-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  70% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
+  0%   { transform: scale(1);    opacity: 0.65; }
+  70%  { transform: scale(1.6);  opacity: 0; }
+  100% { transform: scale(1.6);  opacity: 0; }
 }

@@ -12,13 +12,13 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
-  <section id="accueil" className="relative pt-24 overflow-hidden">
-    {/* Background image — subtle Ken Burns zoom */}
+  <section id="accueil" className="relative pt-24 overflow-hidden" aria-label="Accueil">
+    {/* Background — subtle Ken Burns zoom */}
     <motion.div
       className="absolute inset-0"
       initial={{ scale: 1.06 }}
       animate={{ scale: 1 }}
-      transition={{ duration: 1.6, ease: "easeOut" }}
+      transition={{ duration: 1.8, ease: "easeOut" }}
     >
       <Image
         src={heroBg}
@@ -26,6 +26,7 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
         fill
         className="object-cover object-center"
         priority
+        sizes="100vw"
       />
     </motion.div>
 
@@ -34,12 +35,13 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
       className="absolute inset-0 bg-primary/70"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.9 }}
+      aria-hidden="true"
     />
 
-    <div className="container mx-auto relative z-10 flex flex-col items-center text-center px-4 py-20 md:py-32">
+    <div className="container mx-auto relative z-10 flex flex-col items-center text-center px-4 sm:px-6 py-24 md:py-36">
       <motion.h1
-        className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-4xl"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-4xl"
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -48,7 +50,7 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
       </motion.h1>
 
       <motion.p
-        className="mt-6 text-lg md:text-xl text-white/85 max-w-2xl"
+        className="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -66,18 +68,20 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
           <Button
             size="lg"
             onClick={onDevisClick}
-            className="gap-2 text-base px-8 transition-shadow duration-200 hover:shadow-lg"
+            className="gap-2 text-base px-8 shadow-sm hover:shadow-md transition-shadow duration-200"
           >
-            <ArrowRight className="h-5 w-5" /> Demander un devis
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            Demander un devis
           </Button>
         </motion.div>
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
           <Button
             size="lg"
             onClick={onCvClick}
-            className="gap-2 text-base px-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-shadow duration-200 hover:shadow-lg"
+            className="gap-2 text-base px-8 bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md transition-shadow duration-200"
           >
-            <FileText className="h-5 w-5" /> Déposer mon CV
+            <FileText className="h-5 w-5" aria-hidden="true" />
+            Déposer mon CV
           </Button>
         </motion.div>
       </motion.div>
