@@ -53,7 +53,7 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-white/40 text-white hover:bg-white/10 gap-2 text-base px-8"
+                className="border-white/40 text-blue hover:bg-white/10 gap-2 text-base px-8"
               >
                 <a href="tel:+212661622455" aria-label="Appeler ASOMOVIT Intérim">
                   <Phone className="h-5 w-5" aria-hidden="true" />
