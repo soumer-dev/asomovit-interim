@@ -8,34 +8,41 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
 
 export const metadata: Metadata = {
-  title: "ASOMOVIT Intérim – Travail Temporaire & Recrutement à Marrakech",
+  title: "Agence Intérim Marrakech – Recrutement Temporaire | ASOMOVIT Intérim",
   description:
-    "ASOMOVIT Intérim vous accompagne dans la gestion de vos ressources humaines temporaires. Trouvez du personnel qualifié en moins de 48h ou déposez votre CV pour décrocher une mission.",
+    "ASOMOVIT Intérim, votre agence de recrutement intérim à Marrakech. Personnel temporaire qualifié en moins de 48h pour l'hôtellerie, l'industrie, le BTP et les services. Devis gratuit.",
   keywords: [
+    "agence intérim Marrakech",
     "intérim Marrakech",
-    "recrutement temporaire Maroc",
-    "agence intérim",
-    "travail temporaire",
-    "ASOMOVIT",
-    "personnel qualifié",
-    "hôtellerie restauration",
-    "industrie BTP",
+    "recrutement intérim Marrakech",
+    "agence de recrutement Marrakech",
+    "personnel temporaire Marrakech",
+    "travail temporaire Maroc",
+    "ASOMOVIT intérim",
+    "intérimaires qualifiés Marrakech",
+    "recrutement hôtellerie Marrakech",
+    "personnel BTP Marrakech",
   ],
   authors: [{ name: "ASOMOVIT Intérim" }],
   creator: "ASOMOVIT Intérim",
+  metadataBase: new URL("https://interim.asomovit.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "fr_MA",
-    title: "ASOMOVIT Intérim – Travail Temporaire & Recrutement à Marrakech",
+    url: "https://interim.asomovit.com",
+    title: "Agence Intérim Marrakech – Recrutement Temporaire | ASOMOVIT Intérim",
     description:
-      "Votre partenaire de confiance en recrutement temporaire à Marrakech. Personnel qualifié en moins de 48h.",
+      "Votre agence intérim de confiance à Marrakech. Personnel qualifié en moins de 48h pour tous secteurs. Demandez un devis gratuit.",
     siteName: "ASOMOVIT Intérim",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ASOMOVIT Intérim – Travail Temporaire & Recrutement",
+    title: "Agence Intérim Marrakech | ASOMOVIT Intérim",
     description:
-      "Votre partenaire de confiance en recrutement temporaire à Marrakech.",
+      "Recrutement temporaire à Marrakech – personnel qualifié en moins de 48h. Hôtellerie, industrie, BTP, services.",
   },
   icons: {
     icon: "/favicon.svg",
@@ -43,6 +50,10 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -89,18 +100,51 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
+              "@id": "https://interim.asomovit.com/#business",
               name: "ASOMOVIT Intérim",
+              alternateName: "ASOMOVIT MULTISERVICES",
               description:
-                "Agence de travail temporaire et recrutement à Marrakech, Maroc.",
+                "Agence intérim et recrutement temporaire à Marrakech, Maroc. Personnel qualifié en moins de 48h pour l'hôtellerie, l'industrie, le BTP et les services.",
+              url: "https://interim.asomovit.com",
+              logo: "https://interim.asomovit.com/favicon.svg",
+              image: "https://interim.asomovit.com/favicon.svg",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Allal El fassi",
+                streetAddress: "Allal El Fassi",
                 addressLocality: "Marrakech",
+                addressRegion: "Marrakech-Safi",
                 addressCountry: "MA",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 31.6295,
+                longitude: -7.9811,
               },
               telephone: "+212661622455",
               email: "direction@asomovitmultiservices.com",
-              url: "https://asomovitmultiservices.com",
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  opens: "08:30",
+                  closes: "18:00",
+                },
+              ],
+              sameAs: [
+                "https://www.instagram.com/interim.asomovit/",
+                "https://www.linkedin.com/company/asomovit-interim/",
+              ],
+              areaServed: {
+                "@type": "City",
+                name: "Marrakech",
+              },
+              serviceType: [
+                "Travail temporaire",
+                "Recrutement intérim",
+                "Mise à disposition de personnel",
+                "Recrutement hôtellerie Marrakech",
+                "Personnel BTP Marrakech",
+              ],
             }),
           }}
         />

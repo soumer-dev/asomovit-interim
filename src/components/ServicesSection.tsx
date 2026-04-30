@@ -10,9 +10,9 @@ const services = [
 const ServicesSection = () => (
   <section id="services" className="py-20">
     <div className="container mx-auto px-4">
-      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Nos Services</h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Nos Services d&apos;Intérim à Marrakech</h2>
       <p className="mt-4 text-center text-muted-foreground max-w-xl mx-auto">
-        Des solutions de recrutement temporaire adaptées à chaque besoin
+        Des solutions de recrutement temporaire adaptées à chaque besoin à Marrakech et sa région
       </p>
       <div className="mt-12 grid md:grid-cols-3 gap-6">
         {services.map((s) => (

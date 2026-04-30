@@ -11,7 +11,7 @@ const reasons = [
 const WhyUsSection = () => (
   <section className="py-20 bg-card">
     <div className="container mx-auto px-4">
-      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Pourquoi choisir ASOMOVIT ?</h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">Pourquoi choisir ASOMOVIT Intérim à Marrakech ?</h2>
       <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {reasons.map((r) => (
           <div key={r.text} className="flex items-center gap-4 p-4 rounded-lg bg-background border">

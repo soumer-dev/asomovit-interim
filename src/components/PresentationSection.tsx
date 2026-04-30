@@ -9,9 +9,9 @@ const points = [
 const PresentationSection = () => (
   <section className="py-20 bg-card">
     <div className="container mx-auto px-4 text-center">
-      <h2 className="text-2xl md:text-4xl font-bold text-foreground">Votre partenaire en recrutement temporaire</h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-foreground">Votre agence intérim de confiance à Marrakech</h2>
       <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-        ASOMOVIT Intérim vous accompagne dans la gestion de vos ressources humaines temporaires avec professionnalisme et réactivité.
+        ASOMOVIT Intérim vous accompagne dans la gestion de vos ressources humaines temporaires à Marrakech avec professionnalisme et réactivité.
       </p>
       <div className="mt-12 grid md:grid-cols-3 gap-8">
         {points.map((p) => (

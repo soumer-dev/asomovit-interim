@@ -8,11 +8,9 @@ interface FinalCtaSectionProps {
 const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
   <section className="py-16 bg-gradient-to-r from-primary to-primary/80">
     <div className="container mx-auto px-4 text-center">
-      <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground">
-        Besoin de personnel rapidement ?
-      </h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground">Besoin de personnel temporaire rapidement ?</h2>
       <p className="mt-4 text-primary-foreground/80 text-lg max-w-xl mx-auto">
-        Contactez-nous dès maintenant et recevez une proposition sous 24h
+        Contactez votre agence intérim à Marrakech et recevez une proposition sous 24h
       </p>
       <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
         <Button size="lg" onClick={onDevisClick} className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 text-base px-8">
