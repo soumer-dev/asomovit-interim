@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Providers from "@/components/Providers";
+import { GTMScript, GTMNoScript } from "@/components/GoogleTagManager";
 import "./globals.css";
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
 
 export const metadata: Metadata = {
   title: "ASOMOVIT Intérim – Travail Temporaire & Recrutement à Marrakech",
@@ -32,6 +37,9 @@ export const metadata: Metadata = {
     description:
       "Votre partenaire de confiance en recrutement temporaire à Marrakech.",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
   robots: {
     index: true,
     follow: true,
@@ -45,10 +53,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+        {/* Google Tag Manager – loads GTM which can also fire GA4 events */}
+        <GTMScript gtmId={GTM_ID} />
+
+        {/* Direct GA4 integration (optional – use if not firing via GTM) */}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
+      </head>
       <body>
+        {/* GTM noscript fallback – must be first element inside <body> */}
+        <GTMNoScript gtmId={GTM_ID} />
+
         <Providers>
           {children}
         </Providers>
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

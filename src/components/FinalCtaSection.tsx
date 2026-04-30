@@ -19,7 +19,7 @@ const FinalCtaSection = ({ onDevisClick }: FinalCtaSectionProps) => (
           Demander un devis gratuit
         </Button>
         <Button size="lg" variant="outline" asChild className="border-[hsl(320,70%,35%)] text-[hsl(320,70%,35%)] hover:bg-[hsl(320,70%,35%)]/10 gap-2 text-base px-8">
-          <a href="tel:+212600000000">
+          <a href="tel:+212661622455">
             <Phone className="h-5 w-5" /> Appelez-nous
           </a>
         </Button>

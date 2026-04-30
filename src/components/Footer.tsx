@@ -43,7 +43,18 @@ const Footer = () => (
       </div>
 
       <div className="mt-10 pt-6 border-t border-[hsl(220,60%,20%)]/20 text-center text-sm text-[hsl(220,60%,20%)]/50">
-        © {new Date().getFullYear()} ASOMOVIT Intérim. Tous droits réservés.
+        <p>
+            © {new Date().getFullYear()} ASOMOVIT MULTISERVICES, appuyé par{" "}
+            <a
+              href="https://monarkit.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[hsl(220,60%,20%)]/50 transition-colors"
+            >
+              MONARK IT
+            </a>
+            . Tous droits réservés.
+          </p>
       </div>
     </div>
   </footer>
