@@ -29,7 +29,7 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
               aria-label="ASOMOVIT Intérim sur Instagram"
-              className="h-9 w-9 rounded-full bg-[hsl(220,60%,20%)]/10 flex items-center justify-center text-[hsl(220,60%,20%)]/60 hover:bg-[hsl(320,70%,45%)] hover:text-white transition-colors duration-200"
+              className="h-9 w-9 rounded-full bg-[hsl(220,60%,20%)]/10 flex items-center justify-center text-[hsl(220,60%,20%)]/60 hover:bg-[hsl(210,90%,40%)] hover:text-white transition-colors duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contacter ASOMOVIT Intérim sur Facebook"
-              className="h-9 w-9 rounded-full bg-[hsl(220,60%,20%)]/10 flex items-center justify-center text-[hsl(220,60%,20%)]/60 hover:bg-[hsl(142,70%,40%)] hover:text-white transition-colors duration-200"
+              className="h-9 w-9 rounded-full bg-[hsl(220,60%,20%)]/10 flex items-center justify-center text-[hsl(220,60%,20%)]/60 hover:bg-[hsl(210,90%,40%)] hover:text-white transition-colors duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
