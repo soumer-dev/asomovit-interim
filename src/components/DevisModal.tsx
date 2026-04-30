@@ -27,6 +27,8 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Capture form ref immediately — e.currentTarget becomes null after any await
+    const form = e.currentTarget;
     setLoading(true);
 
     try {
@@ -35,7 +37,6 @@ const DevisModal = ({ open, onOpenChange }: DevisModalProps) => {
         recaptchaToken = await executeRecaptcha("devis_form");
       }
 
-      const form = e.currentTarget;
       const data = new FormData(form);
 
       const payload = {

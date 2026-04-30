@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { motion } from "framer-motion";
-import { fadeUp, staggerContainer, staggerItem, viewport } from "@/lib/motion";
+import { staggerContainer, staggerItem, viewport } from "@/lib/motion";
 
 const MAP_LINK =
   "https://www.google.com/maps/place/ASOMOVIT+MULTISERVICES/data=!4m2!3m1!1s0x0:0x225b6db315207c08?sa=X&ved=1t:2428&ictx=111";
