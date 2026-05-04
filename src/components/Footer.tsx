@@ -2,7 +2,7 @@
 
 import { MapPin, Phone, Mail } from "lucide-react";
 import Image from "next/image";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.svg";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem, viewport } from "@/lib/motion";
 
