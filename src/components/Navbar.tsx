@@ -43,8 +43,8 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
           <Image
             src={logo}
             alt="ASOMOVIT Intérim"
-            className="h-20 w-auto object-scale-down bg-transparent"
-            height={80}
+            className="h-[60px] w-auto object-scale-down bg-transparent"
+            height={100}
           />
         </a>
 

@@ -32,7 +32,7 @@ const Footer = () => (
           <Image
             src={logo}
             alt="ASOMOVIT Intérim – Agence de recrutement temporaire à Marrakech"
-            className="h-28 w-auto mb-5"
+            className="h-[100px] w-auto mb-5"
             height={112}
           />
           <p className="text-sm text-[hsl(220,60%,20%)]/65 leading-relaxed max-w-xs">
