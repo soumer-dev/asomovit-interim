@@ -30,11 +30,8 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -8, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b transition-shadow duration-300 ${
+    <nav
+      className={`navbar-slide-in fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b transition-shadow duration-300 ${
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
@@ -44,7 +41,9 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
             src={logo}
             alt="ASOMOVIT Intérim"
             className="h-[60px] w-auto object-scale-down bg-transparent"
-            height={100}
+            height={60}
+            width={160}
+            priority
           />
         </a>
 
@@ -76,6 +75,8 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
           className="md:hidden p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
         >
           <AnimatePresence mode="wait" initial={false}>
             {mobileOpen ? (
@@ -107,6 +108,7 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
       <AnimatePresence initial={false}>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
             key="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -144,7 +146,7 @@ const Navbar = ({ onDevisClick }: NavbarProps) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 

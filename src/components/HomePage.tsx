@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PresentationSection from "@/components/PresentationSection";
@@ -12,9 +12,11 @@ import QualitySection from "@/components/QualitySection";
 import DualCtaSection from "@/components/DualCtaSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
 import Footer from "@/components/Footer";
-import DevisModal from "@/components/DevisModal";
-import CvModal from "@/components/CvModal";
 import WhatsAppCta from "@/components/WhatsAppCta";
+
+// Lazy-load heavy modal components — they are never needed on initial paint
+const DevisModal = lazy(() => import("@/components/DevisModal"));
+const CvModal = lazy(() => import("@/components/CvModal"));
 
 export default function HomePage() {
   const [devisOpen, setDevisOpen] = useState(false);
@@ -39,8 +41,17 @@ export default function HomePage() {
       />
       <FinalCtaSection onDevisClick={() => setDevisOpen(true)} />
       <Footer />
-      <DevisModal open={devisOpen} onOpenChange={setDevisOpen} />
-      <CvModal open={cvOpen} onOpenChange={setCvOpen} />
+
+      {/* Modals are lazy-loaded — only fetched when first opened */}
+      <Suspense fallback={null}>
+        {devisOpen && (
+          <DevisModal open={devisOpen} onOpenChange={setDevisOpen} />
+        )}
+        {cvOpen && (
+          <CvModal open={cvOpen} onOpenChange={setCvOpen} />
+        )}
+      </Suspense>
+
       <WhatsAppCta />
     </div>
   );

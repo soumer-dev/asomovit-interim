@@ -13,13 +13,8 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
   <section id="accueil" className="relative pt-24 overflow-hidden" aria-label="Accueil">
-    {/* Background — subtle Ken Burns zoom */}
-    <motion.div
-      className="absolute inset-0"
-      initial={{ scale: 1.06 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 1.8, ease: "easeOut" }}
-    >
+    {/* Background — subtle Ken Burns zoom via CSS (avoids wrapping LCP image in motion.div) */}
+    <div className="absolute inset-0 hero-bg-zoom">
       <Image
         src={heroBg}
         alt="Agence intérim Marrakech – ASOMOVIT Intérim, recrutement temporaire au Maroc"
@@ -27,15 +22,13 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
         className="object-cover object-center"
         priority
         sizes="100vw"
+        quality={85}
       />
-    </motion.div>
+    </div>
 
     {/* Overlay */}
-    <motion.div
+    <div
       className="absolute inset-0 bg-primary/70"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.9 }}
       aria-hidden="true"
     />
 

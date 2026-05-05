@@ -1,12 +1,34 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import Providers from "@/components/Providers";
 import { GTMScript, GTMNoScript } from "@/components/GoogleTagManager";
 import "./globals.css";
 
+// ─── Font ─────────────────────────────────────────────────────────────────────
+// next/font/google self-hosts the font, eliminates the render-blocking
+// Google Fonts @import, and adds font-display:swap automatically.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-inter",
+  preload: true,
+});
+
+// ─── Env ──────────────────────────────────────────────────────────────────────
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
 
+// ─── Viewport ─────────────────────────────────────────────────────────────────
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1e3a6e",
+};
+
+// ─── Metadata ─────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: "Agence Intérim Marrakech – Recrutement Temporaire | ASOMOVIT Intérim",
   description:
@@ -57,13 +79,14 @@ export const metadata: Metadata = {
   },
 };
 
+// ─── Layout ───────────────────────────────────────────────────────────────────
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={inter.variable}>
       <head>
         {/* Google Tag Manager – loads GTM which can also fire GA4 events */}
         <GTMScript gtmId={GTM_ID} />
@@ -86,7 +109,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body>
+      <body className={inter.className}>
         {/* GTM noscript fallback – must be first element inside <body> */}
         <GTMNoScript gtmId={GTM_ID} />
 
