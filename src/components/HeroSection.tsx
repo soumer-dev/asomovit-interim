@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText } from "lucide-react";
 import Image from "next/image";
-import heroBg from "@/assets/hero-bg-2.jpg";
+import heroBg from "@/assets/hero-bg-2.webp";
 import { motion } from "framer-motion";
 
 interface HeroSectionProps {

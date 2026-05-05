@@ -89,8 +89,6 @@ export default function RootLayout({
     <html lang="fr" className={inter.variable}>
       <head>
         {/* Google Tag Manager – loads GTM which can also fire GA4 events */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preload" as="image" href="/_next/static/media/hero-bg-2.02928934.jpg" fetchPriority="high" />
         <GTMScript gtmId={GTM_ID} />
 
