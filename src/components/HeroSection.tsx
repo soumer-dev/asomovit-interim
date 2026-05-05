@@ -21,6 +21,7 @@ const HeroSection = ({ onDevisClick, onCvClick }: HeroSectionProps) => (
         fill
         className="object-cover object-center"
         priority
+        fetchPriority="high"
         sizes="100vw"
         quality={85}
       />
