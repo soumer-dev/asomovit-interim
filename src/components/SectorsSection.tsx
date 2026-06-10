@@ -9,21 +9,25 @@ const sectors = [
     icon: Hotel,
     title: "Hôtellerie & Restauration",
     desc: "Serveurs, cuisiniers, femmes de chambre, réceptionnistes…",
+    image: "/Hotel.webp",
   },
   {
     icon: Factory,
     title: "Industrie & BTP",
     desc: "Ouvriers qualifiés, manutentionnaires, techniciens…",
+    image: "/Factory.webp",
   },
   {
     icon: Sparkles,
     title: "Nettoyage & Services",
     desc: "Agents d'entretien, agents de sécurité, personnel polyvalent…",
+    image: "/Nettoyage.webp",
   },
   {
     icon: Building2,
     title: "Bureaux & Entreprises",
     desc: "Assistants administratifs, hôtesses d'accueil, secrétaires…",
+    image: "/Bureaux.webp",
   },
 ];
 
@@ -64,17 +68,29 @@ const SectorsSection = () => (
             key={s.title}
             variants={staggerItem}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="group p-6 rounded-2xl border border-border/60 bg-background hover:bg-primary hover:border-primary transition-colors duration-300 text-center cursor-default"
+            className="group relative p-6 rounded-2xl border border-border/60 overflow-hidden text-center cursor-default"
           >
-            <div className="h-14 w-14 mx-auto rounded-full bg-primary/10 group-hover:bg-primary-foreground/15 flex items-center justify-center mb-4 transition-colors duration-300">
-              <s.icon className="h-7 w-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+            {/* Background image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              style={{ backgroundImage: `url('${s.image}')` }}
+            />
+
+            {/* Blue overlay at 20% — strengthens to 60% on hover */}
+            <div className="absolute inset-0 bg-black/50 group-hover:bg-[#2c498c]/80 transition-colors duration-300" />
+
+            {/* Content */}
+            <div className="relative z-10">
+              <div className="h-14 w-14 mx-auto rounded-full bg-white/20 group-hover:bg-white/25 flex items-center justify-center mb-4 transition-colors duration-300">
+                <s.icon className="h-7 w-7 text-white transition-colors duration-300" />
+              </div>
+              <h3 className="font-semibold text-base text-white drop-shadow transition-colors duration-300">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-sm text-white/80 group-hover:text-white transition-colors duration-300 leading-relaxed drop-shadow">
+                {s.desc}
+              </p>
             </div>
-            <h3 className="font-semibold text-base text-foreground group-hover:text-primary-foreground transition-colors duration-300">
-              {s.title}
-            </h3>
-            <p className="mt-2 text-sm text-muted-foreground group-hover:text-primary-foreground/75 transition-colors duration-300 leading-relaxed">
-              {s.desc}
-            </p>
           </motion.div>
         ))}
       </motion.div>

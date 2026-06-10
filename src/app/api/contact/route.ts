@@ -45,8 +45,67 @@ function getRecipients(): string[] {
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as Record<string, string>;
-    const { type, recaptchaToken, ...fields } = body;
+    const contentType = req.headers.get("content-type") ?? "";
+
+    let type = "";
+    let recaptchaToken = "";
+    let fields: Record<string, string> = {};
+    let attachment: { filename: string; content: Buffer } | null = null;
+
+    if (contentType.includes("multipart/form-data")) {
+      // CV form — may carry a file attachment
+      const fd = await req.formData();
+      type = (fd.get("type") as string | null) ?? "";
+      recaptchaToken = (fd.get("recaptchaToken") as string | null) ?? "";
+
+      for (const [key, value] of fd.entries()) {
+        if (
+          typeof value === "string" &&
+          key !== "type" &&
+          key !== "recaptchaToken" &&
+          key !== "cv_file"
+        ) {
+          fields[key] = value;
+        }
+      }
+
+      const file = fd.get("cv_file") as File | null;
+      if (file && file.size > 0) {
+        const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
+        const validMime = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+        const validExt = [".pdf", ".doc", ".docx"];
+
+        if (!validMime.includes(file.type) && !validExt.includes(ext)) {
+          return NextResponse.json(
+            { error: "Format de fichier non accepté. Utilisez PDF, DOC ou DOCX." },
+            { status: 400 }
+          );
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          return NextResponse.json(
+            { error: "Le fichier dépasse la taille maximale de 5 Mo." },
+            { status: 400 }
+          );
+        }
+
+        attachment = {
+          filename: file.name,
+          content: Buffer.from(await file.arrayBuffer()),
+        };
+      }
+    } else {
+      // Devis form and any other JSON submissions
+      const body = (await req.json()) as Record<string, string>;
+      type = body.type ?? "";
+      recaptchaToken = body.recaptchaToken ?? "";
+      fields = Object.fromEntries(
+        Object.entries(body).filter(([k]) => k !== "type" && k !== "recaptchaToken")
+      );
+    }
 
     // --- reCAPTCHA validation ---
     if (!recaptchaToken) {
@@ -88,6 +147,7 @@ export async function POST(req: NextRequest) {
           <tr><td><strong>Email</strong></td><td>${escapeHtml(fields.email ?? "")}</td></tr>
           <tr><td><strong>Secteur recherché</strong></td><td>${escapeHtml(fields.sector ?? "")}</td></tr>
           <tr><td><strong>Expérience</strong></td><td style="white-space:pre-wrap">${escapeHtml(fields.experience ?? "")}</td></tr>
+          ${attachment ? `<tr><td><strong>Pièce jointe</strong></td><td>${escapeHtml(attachment.filename)}</td></tr>` : ""}
         </table>
       `;
     } else if (type === "devis") {
@@ -114,6 +174,9 @@ export async function POST(req: NextRequest) {
       to: recipients,
       subject,
       html,
+      ...(attachment
+        ? { attachments: [{ filename: attachment.filename, content: attachment.content }] }
+        : {}),
     });
 
     if (error) {
