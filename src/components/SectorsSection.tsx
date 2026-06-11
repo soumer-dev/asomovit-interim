@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Hotel, Factory, Sparkles, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, staggerItem, viewport } from "@/lib/motion";
@@ -64,34 +65,33 @@ const SectorsSection = () => (
         className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
       >
         {sectors.map((s) => (
-          <motion.div
+          <motion.figure
             key={s.title}
             variants={staggerItem}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="group relative p-6 rounded-2xl border border-border/60 overflow-hidden text-center cursor-default"
+            className="group relative overflow-hidden rounded-2xl shadow-md cursor-default"
           >
-            {/* Background image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-              style={{ backgroundImage: `url('${s.image}')` }}
+            {/* Image */}
+            <Image
+              src={s.image}
+              alt={s.title}
+              width={600}
+              height={256}
+              className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
 
-            {/* Blue overlay at 20% — strengthens to 60% on hover */}
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-[#2c498c]/80 transition-colors duration-300" />
+            {/* Caption — gradient from primary, always visible */}
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/60 to-transparent p-4 text-white">
 
-            {/* Content */}
-            <div className="relative z-10">
-              <div className="h-14 w-14 mx-auto rounded-full bg-white/20 group-hover:bg-white/25 flex items-center justify-center mb-4 transition-colors duration-300">
-                <s.icon className="h-7 w-7 text-white transition-colors duration-300" />
-              </div>
-              <h3 className="font-semibold text-base text-white drop-shadow transition-colors duration-300">
-                {s.title}
-              </h3>
-              <p className="mt-2 text-sm text-white/80 group-hover:text-white transition-colors duration-300 leading-relaxed drop-shadow">
+              <p className="font-semibold text-base leading-snug">{s.title}</p>
+
+              {/* Desc — slides in on hover */}
+              <p className="mt-1 text-xs text-white/80 opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-20 transition-all duration-300 leading-relaxed overflow-hidden">
                 {s.desc}
               </p>
-            </div>
-          </motion.div>
+            </figcaption>
+          </motion.figure>
         ))}
       </motion.div>
     </div>
