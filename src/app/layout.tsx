@@ -174,6 +174,16 @@ export default function RootLayout({
             }),
           }}
         />
+
+        {/* Zoho SalesIQ chat widget */}
+        <Script id="zsiq-init" strategy="lazyOnload">
+          {`window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`}
+        </Script>
+        <Script
+          id="zsiqscript"
+          src="https://salesiq.zohopublic.com/widget?wc=siq76be80ba9a2079741dc17a7d43a084c666f72b346c1f418b1b423e47163c2cc9"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
